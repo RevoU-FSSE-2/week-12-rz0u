@@ -1,5 +1,6 @@
 import { Formik, Field, ErrorMessage, FormikHelpers } from "formik";
 import { Form, Input, Button } from "antd";
+import validationSchema from "../../validationSchema";
 
 interface PersonalValues {
   fullName: string;
