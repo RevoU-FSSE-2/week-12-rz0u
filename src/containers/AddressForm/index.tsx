@@ -24,7 +24,7 @@ const AddressForm: React.FC<AddressData> = ({ goBack, goNext }) => {
   });
 
   return (
-    <Card title={"Personal Information"}>
+    <Card title={"Address Information"}>
       <Formik
         initialValues={formData}
         validationSchema={Yup.object({
