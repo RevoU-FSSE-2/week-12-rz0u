@@ -60,6 +60,7 @@ const AccountForm = () => {
             value={forMik.values.password}
             onChange={forMik.handleChange("password")}
             status={forMik.errors.password && "error"}
+            type="password"
           />
           {forMik.errors.password && <Text>{forMik.errors.password}</Text>}{" "}
         </div>

@@ -92,7 +92,9 @@ const PersonalForm = () => {
             <Text font="secondary">{forMik.errors.birthDate}</Text>
           )}
         </div>
-        <Button type="default" htmlType="submit" children={undefined}></Button>
+        <Button type="default" htmlType="submit">
+          Submit
+        </Button>
       </form>
     </Card>
   );
