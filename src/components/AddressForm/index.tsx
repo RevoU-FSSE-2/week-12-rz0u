@@ -1,7 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Card, Text, Input, Button } from "../../components";
+import { Card } from "../../components";
 import * as Yup from "yup";
 import { useState } from "react";
+import { Button, Input } from "antd";
 
 interface AddressValues {
   streetAddress: string;
@@ -53,22 +54,19 @@ const AddressForm: React.FC<AddressData> = ({ goBack, goNext }) => {
         <Form>
           <Card title={"Street Address:"}>
             <Field as={Input} type="text" name="streetAddress" />
-            <ErrorMessage
-              as={Text({ font: "secondary" })}
-              name="streetAddress"
-            />
+            <ErrorMessage name="streetAddress" />
           </Card>
           <Card title={"City:"}>
             <Field as={Input} type="text" name="city" />
-            <ErrorMessage as={Text({ font: "secondary" })} name="city" />
+            <ErrorMessage name="city" />
           </Card>
           <Card title={"State:"}>
             <Field as={Input} type="text" name="state" />
-            <ErrorMessage as={Text({ font: "secondary" })} name="state" />
+            <ErrorMessage name="state" />
           </Card>
           <Card title={"Zip Code:"}>
             <Field as={Input} type="text" name="zipCode" />
-            <ErrorMessage as={Text({ font: "secondary" })} name="zipCode" />
+            <ErrorMessage name="zipCode" />
           </Card>
           <Button onClick={goBack}>Previous</Button>
           <Button type="primary" htmlType="submit">

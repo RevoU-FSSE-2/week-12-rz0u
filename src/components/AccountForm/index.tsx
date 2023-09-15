@@ -1,7 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Card, Text, Input, Button } from "../../components";
+import { Card } from "../../components";
 import * as Yup from "yup";
 import { useState } from "react";
+import { Button, Input } from "antd";
 
 interface AccountValues {
   username: string;
@@ -57,11 +58,11 @@ const AccountForm: React.FC<AccountData> = ({ goBack, goNext, onFinish }) => {
         <Form>
           <Card title={"Username:"}>
             <Field as={Input} type="text" name="username" />
-            <ErrorMessage as={Text({ font: "secondary" })} name="username" />
+            <ErrorMessage as={Text} name="username" />
           </Card>
           <Card title={"Password:"}>
             <Field as={Input} type="password" name="password" />
-            <ErrorMessage as={Text({ font: "secondary" })} name="password" />
+            <ErrorMessage as={Text} name="password" />
           </Card>
           <Button onClick={goBack}>Previous</Button>
           <Button type="primary" htmlType="submit">

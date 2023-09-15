@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { PersonalForm, AddressForm, AccountForm } from "..";
-import { Text } from "../../components";
+import { PersonalForm, AddressForm, AccountForm } from "../../components";
 
 interface FormData {
   fullName: string;
@@ -42,9 +41,6 @@ const Forms: React.FC = () => {
 
   return (
     <div>
-      <Text font="strong" level="2">
-        RevoU Week 12 Intermediate Assignment
-      </Text>
       {currentStep === 1 && <PersonalForm goNext={next} />}
       {currentStep === 2 && <AddressForm goBack={prev} goNext={next} />}
       {currentStep === 3 && (
