@@ -1,11 +1,8 @@
-import MultiStepFormContainer from "./components/MultiStepContainer/MultiStepContainer";
+// import MultiStepFormContainer from "./components/MultiStepContainer/MultiStepContainer";
+import { PersonalForm } from "./containers";
 
 function App() {
-  return (
-    <div className="App">
-      <MultiStepFormContainer />
-    </div>
-  );
+  return <PersonalForm />;
 }
 
 export default App;

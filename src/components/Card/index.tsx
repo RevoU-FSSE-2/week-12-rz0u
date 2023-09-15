@@ -1,7 +1,7 @@
-import { Card as BaseCard } from "antd";
+import { Card as BaseCard, CardProps } from "antd";
 import { ReactNode } from "react";
 
-interface Props {
+interface Props extends CardProps {
   title?: string;
   children: ReactNode;
 }

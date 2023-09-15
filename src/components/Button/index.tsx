@@ -1,12 +1,12 @@
-import { Button as BaseButton } from "antd";
+import { Button as BaseButton, ButtonProps } from "antd";
 import { ReactNode } from "react";
 
-interface Props {
+interface Props extends ButtonProps {
   title?: string;
   children: ReactNode;
 }
 
-const Button = ({ title, children }: Props) => {
+const Button: React.FC<Props> = ({ title, children }: Props) => {
   return <BaseButton title={title}>{children}</BaseButton>;
 };
 

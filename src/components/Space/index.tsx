@@ -1,12 +1,12 @@
-import { Space as BaseSpace } from "antd";
+import { Space as BaseSpace, SpaceProps } from "antd";
 import { ReactNode } from "react";
 
-interface Props {
+interface Props extends SpaceProps {
   children: ReactNode;
 }
 
-const Card = ({ children }: Props) => {
+const Space = ({ children }: Props) => {
   return <BaseSpace>{children}</BaseSpace>;
 };
 
-export default Card;
+export default Space;

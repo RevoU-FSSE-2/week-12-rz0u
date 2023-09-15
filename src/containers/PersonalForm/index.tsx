@@ -1,6 +1,6 @@
-import { Formik, Field, ErrorMessage, FormikHelpers } from "formik";
-import { Form, Input, Button } from "antd";
-import validationSchema from "../../validationSchema";
+import { useFormik } from "formik";
+import { Card, Text, Input, Button, Space } from "../../components";
+import * as Yup from "yup";
 
 interface PersonalValues {
   fullName: string;
@@ -8,47 +8,95 @@ interface PersonalValues {
   birthDate: string;
 }
 
-function PersonalForm() {
+const initialValues = {
+  fullName: "",
+  emailAddress: "",
+  birthDate: "",
+};
+
+const validationSchema = Yup.object({
+  fullName: Yup.string().required("Please fill in your Full Name"),
+  emailAddress: Yup.string()
+    .email("Invalid Email Address")
+    .required("Please fill in your Email Address"),
+  birthDate: Yup.date()
+    .nullable()
+    .required("Please fill in your Date of Birth")
+    .max(new Date(), "Cannot be filled with future dates")
+    .test("age", "You must be at least 18 years old", function (value) {
+      const today = new Date();
+      const birthDate = new Date(value);
+      const age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      if (
+        monthDiff < 0 ||
+        (monthDiff === 0 && today.getDate() < birthDate.getDate())
+      ) {
+        return age - 1 >= 18;
+      }
+      return age >= 18;
+    }),
+});
+
+const PersonalForm = () => {
+  const handleSubmit = (values: PersonalValues) => {
+    console.log(values);
+  };
+
+  const forMik = useFormik({
+    initialValues: initialValues,
+    onSubmit: handleSubmit,
+    validationSchema: validationSchema,
+  });
+
   return (
-    <Formik
-      initialValues={{
-        fullName: "",
-        emailAddress: "",
-        birthDate: "",
-      }}
-      validationSchema={validationSchema}
-      onSubmit={(
-        values: PersonalValues,
-        { setSubmitting }: FormikHelpers<PersonalValues>
-      ) => {
-        console.log("Personal Form Values:", values);
-        setSubmitting(false);
-      }}
-    >
-      {() => (
-        <Form>
+    <Card title={"Personal Information"}>
+      <Space>
+        <form onSubmit={forMik.handleSubmit}>
           <div>
-            <label htmlFor="fullName">Full Name</label>
-            <Field type="text" name="fullName" as={Input} />
-            <ErrorMessage name="fullName" component="div" />
+            <Text>Full Name:</Text>
+            <Input
+              name={"fullName"}
+              value={forMik.values.fullName}
+              onChange={forMik.handleChange("fullName")}
+              status={forMik.errors.fullName && "error"}
+            />
+            {forMik.errors.fullName && (
+              <Text font="secondary">{forMik.errors.fullName}</Text>
+            )}{" "}
           </div>
           <div>
-            <label htmlFor="emailAddress">Email Address</label>
-            <Field type="email" name="emailAddress" as={Input} />
-            <ErrorMessage name="emailAddress" component="div" />
+            <Text>Email Address:</Text>
+            <Input
+              name={"emailAddress"}
+              value={forMik.values.emailAddress}
+              onChange={forMik.handleChange("emailAddress")}
+              status={forMik.errors.emailAddress && "error"}
+            />
+            {forMik.errors.emailAddress && (
+              <Text font="secondary">{forMik.errors.emailAddress}</Text>
+            )}{" "}
           </div>
           <div>
-            <label htmlFor="birthDate">Date of Birth</label>
-            <Field type="date" name="birthDate" as={Input} />
-            <ErrorMessage name="birthDate" component="div" />
+            <Text>Date of Birth:</Text>
+            <Input
+              name={"birthDate"}
+              value={forMik.values.birthDate}
+              onChange={forMik.handleChange("birthDate")}
+              status={forMik.errors.birthDate && "error"}
+            />
+            {forMik.errors.birthDate && (
+              <Text font="secondary">{forMik.errors.birthDate}</Text>
+            )}{" "}
           </div>
-          <Button htmlType="submit" type="primary">
+          <br />
+          <Button type={"primary"} htmlType={"submit"}>
             Next
           </Button>
-        </Form>
-      )}
-    </Formik>
+        </form>
+      </Space>
+    </Card>
   );
-}
+};
 
 export default PersonalForm;

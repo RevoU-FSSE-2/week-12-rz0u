@@ -1,7 +1,19 @@
-import { DatePicker as BaseDatePicker } from "antd";
+// import { DatePicker as BaseDatePicker, DatePickerProps } from "antd";
 
-const DatePicker = () => {
-  return <BaseDatePicker></BaseDatePicker>;
-};
+// interface Props extends DatePickerProps &&  {
+//   name?: string;
+// }
 
-export default DatePicker;
+// const DatePicker: React.FC<Props> = (props) => {
+//   return <BaseDatePicker {...props} />;
+// };
+
+// export default DatePicker;
+
+// interface Props extends InputProps {
+//   name: string;
+// }
+
+// const Input: React.FC<Props> = (props) => {
+//   return <BaseInput {...props} />;
+// };

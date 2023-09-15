@@ -1,28 +1,21 @@
 import { ReactNode } from "react";
+import { Typography } from "antd";
 
 interface Props {
   children: ReactNode;
-  type?: "h1" | "h2" | "h3" | "p" | "span";
+  font?: "default" | "secondary" | "strong";
 }
 
-const Text = ({ children, type }: Props) => {
-  if (type === "h1") {
-    return <h1>{children}</h1>;
+const Text = ({ children, font }: Props) => {
+  if (font === "secondary") {
+    return <Typography.Text type="secondary">{children}</Typography.Text>;
   }
 
-  if (type === "h2") {
-    return <h2>{children}</h2>;
+  if (font === "strong") {
+    return <Typography.Text strong>{children}</Typography.Text>;
   }
 
-  if (type === "h3") {
-    return <h3>{children}</h3>;
-  }
-
-  if (type === "span") {
-    return <span>{children}</span>;
-  }
-
-  return <p>{children}</p>;
+  return <Typography.Text>{children}</Typography.Text>;
 };
 
 export default Text;
