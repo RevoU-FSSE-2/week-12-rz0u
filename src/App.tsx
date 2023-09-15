@@ -1,12 +1,7 @@
 import { useState } from "react";
-import { Card } from "./components";
-import {
-  PersonalForm,
-  AddressForm,
-  AccountForm,
-  MultiStepContainer,
-} from "./containers";
-import { useFormik } from "formik";
+import { Card, Space, Button } from "./components";
+import { PersonalForm, AddressForm, AccountForm } from "./containers";
+// import { useFormik } from "formik";
 
 interface InitialValues {
   fullName: string;
@@ -33,35 +28,51 @@ const InitialValues: InitialValues = {
 };
 
 function App() {
-  const [data, setData] = useState(InitialValues);
-  const handleSubmit = (values: InitialValues) => {
-    console.log(values);
+  const [step, setStep] = useState<number>(1);
+  const handleNext = () => {
+    if (step === 1 || step === 2) {
+      setStep((prev) => prev + 1);
+    }
+    return;
   };
-
-  const forMik = useFormik({
-    initialValues: InitialValues,
-    onSubmit: handleSubmit,
-    validationSchema: validationSchema,
-  });
-
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
-    MultiStepContainer([<PersonalForm />, <AddressForm />, <AccountForm />]);
+  const handlePrev = () => {
+    if (step === 2 || step === 3) {
+      setStep((prev) => prev - 1);
+    }
+    return;
+  };
   return (
-    <>
-      <Card>
-        <div>
-          <form onSubmit={forMik.handleSubmit}>
-            <PersonalForm></PersonalForm>
-          </form>
-        </div>
-        <div>
-          <AddressForm></AddressForm>
-        </div>
-        <div>
-          <AccountForm></AccountForm>
-        </div>
-      </Card>
-    </>
+    <Card title="Intermediate Assignment Week 12">
+      <div>
+        {step === 1 && <PersonalForm />}
+        {step === 2 && <AddressForm />}
+        {step === 3 && <AccountForm />}
+      </div>
+      <Space direction="vertical">
+        <Space wrap>
+          {step === 2 && (
+            <div>
+              <Button onClick={handlePrev}>Previous</Button>
+              <Button onClick={handleNext} type={"primary"}>
+                Next
+              </Button>
+            </div>
+          )}
+
+          {step === 1 && (
+            <Button onClick={handleNext} type={"primary"}>
+              Next
+            </Button>
+          )}
+
+          {step === 3 && (
+            <div>
+              <Button onClick={handlePrev}>Previous</Button>
+            </div>
+          )}
+        </Space>
+      </Space>
+    </Card>
   );
 }
 

@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { Card, Text, Input } from "../../components";
+import { Card, Text, Input, Button } from "../../components";
 import * as Yup from "yup";
 
 interface PersonalValues {
@@ -60,6 +60,7 @@ const PersonalForm = () => {
             value={forMik.values.fullName}
             onChange={forMik.handleChange("fullName")}
             status={forMik.errors.fullName && "error"}
+            placeholder="John Doe"
           />
           {forMik.errors.fullName && (
             <Text font="secondary">{forMik.errors.fullName}</Text>
@@ -72,6 +73,7 @@ const PersonalForm = () => {
             value={forMik.values.emailAddress}
             onChange={forMik.handleChange("emailAddress")}
             status={forMik.errors.emailAddress && "error"}
+            placeholder="johndoe@gmail.com"
           />
           {forMik.errors.emailAddress && (
             <Text font="secondary">{forMik.errors.emailAddress}</Text>
@@ -84,11 +86,13 @@ const PersonalForm = () => {
             value={forMik.values.birthDate}
             onChange={forMik.handleChange("birthDate")}
             status={forMik.errors.birthDate && "error"}
+            placeholder="21/05/1981"
           />
           {forMik.errors.birthDate && (
             <Text font="secondary">{forMik.errors.birthDate}</Text>
           )}
         </div>
+        <Button type="default" htmlType="submit" children={undefined}></Button>
       </form>
     </Card>
   );

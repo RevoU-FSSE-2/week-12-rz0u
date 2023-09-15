@@ -49,6 +49,7 @@ const AccountForm = () => {
             value={forMik.values.username}
             onChange={forMik.handleChange("username")}
             status={forMik.errors.username && "error"}
+            placeholder="JohnDoe1234"
           />
           {forMik.errors.username && <Text>{forMik.errors.username}</Text>}{" "}
         </div>

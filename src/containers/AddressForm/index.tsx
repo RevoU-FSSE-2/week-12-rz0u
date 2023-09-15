@@ -46,6 +46,7 @@ const AddressForm = () => {
             value={forMik.values.streetAddress}
             onChange={forMik.handleChange("streetAddress")}
             status={forMik.errors.streetAddress && "error"}
+            placeholder="1234 NW Bobcat Lane"
           />
           {forMik.errors.streetAddress && (
             <Text>{forMik.errors.streetAddress}</Text>
@@ -58,6 +59,7 @@ const AddressForm = () => {
             value={forMik.values.city}
             onChange={forMik.handleChange("city")}
             status={forMik.errors.city && "error"}
+            placeholder="St. Robert"
           />
           {forMik.errors.city && <Text>{forMik.errors.city}</Text>}{" "}
         </div>
@@ -68,6 +70,7 @@ const AddressForm = () => {
             value={forMik.values.state}
             onChange={forMik.handleChange("state")}
             status={forMik.errors.state && "error"}
+            placeholder="Tristate"
           />
           {forMik.errors.state && <Text>{forMik.errors.state}</Text>}{" "}
         </div>
@@ -78,6 +81,7 @@ const AddressForm = () => {
             value={forMik.values.zipCode}
             onChange={forMik.handleChange("zipCode")}
             status={forMik.errors.zipCode && "error"}
+            placeholder="12345"
           />
           {forMik.errors.zipCode && <Text>{forMik.errors.zipCode}</Text>}{" "}
         </div>
