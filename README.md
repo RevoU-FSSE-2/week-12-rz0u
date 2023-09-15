@@ -1,27 +1,21 @@
-# React + TypeScript + Vite
+# Multistep Form with React, Vite, TypeScript, Ant Design, Formik, and Yup
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple and basic multistep form built using popular frontend technologies like React, Vite, TypeScript, Ant Design, Formik, and Yup. It serves as a starting point for creating multistep forms in your web applications.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Multistep form with step-by-step navigation.
+- Client-side validation using Yup schema.
+- Utilizes Ant Design components for a polished UI.
+- Built with TypeScript for type safety.
+- Developed using Vite for fast development and hot module reloading.
 
-## Expanding the ESLint configuration
+## Usage
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Follow the on-screen instructions to complete the multistep form.
+- The form validates your inputs in real-time and prevents submission if there are errors.
+- Once all steps are completed, you can submit the form.
 
-- Configure the top-level `parserOptions` property like this:
+## Deployed Link
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+[Click Here!!](https://frolicking-cendol-3904a7.netlify.app)
