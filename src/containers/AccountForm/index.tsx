@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { Card, Text, Input, Button } from "../../components";
+import { Card, Text, Input } from "../../components";
 import * as Yup from "yup";
 
 interface AccountValues {
@@ -62,60 +62,9 @@ const AccountForm = () => {
           />
           {forMik.errors.password && <Text>{forMik.errors.password}</Text>}{" "}
         </div>
-        <Button type={"primary"} htmlType={"submit"}>
-          Next
-        </Button>
       </form>
     </Card>
   );
 };
 
 export default AccountForm;
-
-// import { Formik, Field, ErrorMessage, FormikHelpers } from "formik";
-// import { Form, Input, Button } from "antd";
-// import validationSchema from "../../validationSchema";
-
-// interface AccountValues {
-//   username: string;
-//   password: string;
-// }
-
-// function AccountForm() {
-//   return (
-//     <Formik
-//       initialValues={{
-//         username: "",
-//         password: "",
-//       }}
-//       validationSchema={validationSchema}
-//       onSubmit={(
-//         values: AccountValues,
-//         { setSubmitting }: FormikHelpers<AccountValues>
-//       ) => {
-//         console.log("Account Form Values:", values);
-//         setSubmitting(false);
-//       }}
-//     >
-//       {() => (
-//         <Form>
-//           <div>
-//             <label htmlFor="username">Username</label>
-//             <Field type="text" name="username" as={Input} />
-//             <ErrorMessage name="username" component="div" />
-//           </div>
-//           <div>
-//             <label htmlFor="password">Password</label>
-//             <Field type="password" name="password" as={Input} />
-//             <ErrorMessage name="password" component="div" />
-//           </div>
-//           <Button htmlType="submit" type="primary">
-//             Next
-//           </Button>
-//         </Form>
-//       )}
-//     </Formik>
-//   );
-// }
-
-// export default AccountForm;

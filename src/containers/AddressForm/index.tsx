@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { Card, Text, Input, Button } from "../../components";
+import { Card, Text, Input } from "../../components";
 import * as Yup from "yup";
 
 interface AddressValues {
@@ -81,9 +81,6 @@ const AddressForm = () => {
           />
           {forMik.errors.zipCode && <Text>{forMik.errors.zipCode}</Text>}{" "}
         </div>
-        <Button type={"primary"} htmlType={"submit"}>
-          Next
-        </Button>
       </form>
     </Card>
   );

@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { Card, Text, Input, Button, Space } from "../../components";
+import { Card, Text, Input } from "../../components";
 import * as Yup from "yup";
 
 interface PersonalValues {
@@ -19,22 +19,23 @@ const validationSchema = Yup.object({
   emailAddress: Yup.string()
     .email("Invalid Email Address")
     .required("Please fill in your Email Address"),
-  birthDate: Yup.date()
+  birthDate: Yup.string()
     .nullable()
     .required("Please fill in your Date of Birth")
-    .max(new Date(), "Cannot be filled with future dates")
-    .test("age", "You must be at least 18 years old", function (value) {
-      const today = new Date();
-      const birthDate = new Date(value);
-      const age = today.getFullYear() - birthDate.getFullYear();
-      const monthDiff = today.getMonth() - birthDate.getMonth();
-      if (
-        monthDiff < 0 ||
-        (monthDiff === 0 && today.getDate() < birthDate.getDate())
-      ) {
-        return age - 1 >= 18;
-      }
-      return age >= 18;
+    .matches(
+      /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/,
+      "Invalid date format. Use DD/MM/YYYY."
+    )
+    .test("isNotFutureDate", "Date cannot be in the future", function (value) {
+      if (!value) return true;
+
+      const [day, month, year] = value.split("/").map(Number);
+
+      const enteredDate = new Date(year, month - 1, day);
+
+      const currentDate = new Date();
+
+      return enteredDate <= currentDate;
     }),
 });
 
@@ -51,50 +52,44 @@ const PersonalForm = () => {
 
   return (
     <Card title={"Personal Information"}>
-      <Space>
-        <form onSubmit={forMik.handleSubmit}>
-          <div>
-            <Text>Full Name:</Text>
-            <Input
-              name={"fullName"}
-              value={forMik.values.fullName}
-              onChange={forMik.handleChange("fullName")}
-              status={forMik.errors.fullName && "error"}
-            />
-            {forMik.errors.fullName && (
-              <Text font="secondary">{forMik.errors.fullName}</Text>
-            )}{" "}
-          </div>
-          <div>
-            <Text>Email Address:</Text>
-            <Input
-              name={"emailAddress"}
-              value={forMik.values.emailAddress}
-              onChange={forMik.handleChange("emailAddress")}
-              status={forMik.errors.emailAddress && "error"}
-            />
-            {forMik.errors.emailAddress && (
-              <Text font="secondary">{forMik.errors.emailAddress}</Text>
-            )}{" "}
-          </div>
-          <div>
-            <Text>Date of Birth:</Text>
-            <Input
-              name={"birthDate"}
-              value={forMik.values.birthDate}
-              onChange={forMik.handleChange("birthDate")}
-              status={forMik.errors.birthDate && "error"}
-            />
-            {forMik.errors.birthDate && (
-              <Text font="secondary">{forMik.errors.birthDate}</Text>
-            )}{" "}
-          </div>
-          <br />
-          <Button type={"primary"} htmlType={"submit"}>
-            Next
-          </Button>
-        </form>
-      </Space>
+      <form onSubmit={forMik.handleSubmit}>
+        <div>
+          <Text>Full Name:</Text>
+          <Input
+            name={"fullName"}
+            value={forMik.values.fullName}
+            onChange={forMik.handleChange("fullName")}
+            status={forMik.errors.fullName && "error"}
+          />
+          {forMik.errors.fullName && (
+            <Text font="secondary">{forMik.errors.fullName}</Text>
+          )}
+        </div>
+        <div>
+          <Text>Email Address:</Text>
+          <Input
+            name={"emailAddress"}
+            value={forMik.values.emailAddress}
+            onChange={forMik.handleChange("emailAddress")}
+            status={forMik.errors.emailAddress && "error"}
+          />
+          {forMik.errors.emailAddress && (
+            <Text font="secondary">{forMik.errors.emailAddress}</Text>
+          )}
+        </div>
+        <div>
+          <Text>Date of Birth:</Text>
+          <Input
+            name={"birthDate"}
+            value={forMik.values.birthDate}
+            onChange={forMik.handleChange("birthDate")}
+            status={forMik.errors.birthDate && "error"}
+          />
+          {forMik.errors.birthDate && (
+            <Text font="secondary">{forMik.errors.birthDate}</Text>
+          )}
+        </div>
+      </form>
     </Card>
   );
 };
