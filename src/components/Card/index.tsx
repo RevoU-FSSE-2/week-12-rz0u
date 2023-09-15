@@ -2,7 +2,7 @@ import { Card as BaseCard, CardProps } from "antd";
 import { ReactNode } from "react";
 
 interface Props extends CardProps {
-  title?: string;
+  title?: string | number;
   children: ReactNode;
 }
 

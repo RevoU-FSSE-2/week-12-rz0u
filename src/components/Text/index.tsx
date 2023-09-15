@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Typography } from "antd";
 
 interface Props {
-  children: ReactNode;
+  children?: ReactNode;
   font?: "default" | "secondary" | "strong";
 }
 

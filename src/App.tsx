@@ -1,9 +1,9 @@
-// import { useState } from "react";
-// import { Card, Space, Button } from "./components";
+import { FormEvent } from "react";
+import { Button, Card, MultiStepContainer } from "./components";
 import { PersonalForm, AddressForm, AccountForm } from "./containers";
 // import { useFormik } from "formik";
 
-interface InitialValues {
+interface InitialFormValues {
   fullName: string;
   emailAddress: string;
   birthDate: string;
@@ -15,7 +15,7 @@ interface InitialValues {
   password: string;
 }
 
-const InitialValues: InitialValues = {
+const InitialFormValues: InitialFormValues = {
   fullName: "",
   emailAddress: "",
   birthDate: "",
@@ -28,11 +28,25 @@ const InitialValues: InitialValues = {
 };
 
 function App() {
+  // const [data, setData] = useState(InitialFormValues);
+  const multiStep = MultiStepContainer([
+    <PersonalForm />,
+    <AddressForm />,
+    <AccountForm />,
+  ]);
+
+  const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
+    multiStep;
+  // const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
+  //   MultiStepContainer([<PersonalForm />, <AddressForm />, <AccountForm />]);
+  function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (!isLastStep) return next();
+    alert("Finished!!!");
+  }
   return (
     <>
-      <PersonalForm></PersonalForm>
-      <AddressForm></AddressForm>
-      <AccountForm></AccountForm>
+      <PersonalForm>
     </>
   );
 }
