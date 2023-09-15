@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { Typography } from "antd";
+import { Typography, TypographyProps } from "antd";
 
-interface Props {
+interface Props extends TypographyProps {
   children?: ReactNode;
   font?: "default" | "secondary" | "strong";
 }

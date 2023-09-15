@@ -50,6 +50,7 @@ const AccountForm: React.FC<AccountData> = ({ goBack, goNext, onFinish }) => {
             setFormData({ ...formData, ...values });
             onFinish(values);
             goNext();
+            alert("Finished filling week 12 form");
           }
         }}
       >
